@@ -35,7 +35,15 @@ public class CalculatorController {
                 break;
         }
 
-        return String.valueOf(res);
+        return formatNumber(res);
+    }
+
+    private static String formatNumber(double value) {
+        long nearest = Math.round(value);
+        if (Math.abs(value - nearest) < 1e-9) {
+            return Long.toString(nearest);
+        }
+        return Double.toString(value);
     }
 
     public void clear(){
