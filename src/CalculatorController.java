@@ -1,3 +1,5 @@
+import java.math.BigDecimal;
+
 public class CalculatorController {
     private double firstNumber = 0;
     private String operator = "";
@@ -39,11 +41,12 @@ public class CalculatorController {
     }
 
     private static String formatNumber(double value) {
-        long nearest = Math.round(value);
-        if (Math.abs(value - nearest) < 1e-9) {
-            return Long.toString(nearest);
-        }
-        return Double.toString(value);
+        return BigDecimal.valueOf(value).stripTrailingZeros().toPlainString();
+        // long nearest = Math.round(value);
+        // if (Math.abs(value - nearest) < 1e-9) {
+        //     return Long.toString(nearest);
+        // }
+        // return Double.toString(value);
     }
 
     public void clear(){
